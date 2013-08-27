@@ -15,10 +15,10 @@
     <% @usages.each do |usage| %>
       <tr>
         <td><%= link_to usage.ip_address, '#' %></td>
-        <td>usage.user</td>
-        <td>usage.machine_name</td>
-        <td>usage.location</td>
-        <td>usage.note</td>
+        <td><%= usage.user %></td>
+        <td><%= usage.machine_name %></td>
+        <td><%= usage.location %></td>
+        <td><%= usage.note %></td>
         <td><%= link_to "delete", '#' %></td>
       </tr>
     <% end %>
