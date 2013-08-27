@@ -8,16 +8,18 @@
       <th>マシン名</th>
       <th>位置</th>
       <th>備考</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>
     <% @usages.each do |usage| %>
       <tr>
-        <td><%= usage.ip_address %></td>
-        <td><%= usage.user %></td>
-        <td><%= usage.machine_name %></td>
-        <td><%= usage.location %></td>
-        <td><%= usage.note %></td>
+        <td><%= link_to usage.ip_address, '#' %></td>
+        <td>usage.user</td>
+        <td>usage.machine_name</td>
+        <td>usage.location</td>
+        <td>usage.note</td>
+        <td><%= link_to "delete", '#' %></td>
       </tr>
     <% end %>
   </tbody>
