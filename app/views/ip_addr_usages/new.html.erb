@@ -1,4 +1,4 @@
-<h1>IPアドレス利用状況の編集</h1>
+<h1>IPアドレスの割り当て</h1>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@usage) do |f| %>
@@ -19,7 +19,7 @@
       <%= f.label :note, "備考" %>
       <%= f.text_area :note %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Create new usage", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

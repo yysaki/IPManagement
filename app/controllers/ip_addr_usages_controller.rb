@@ -3,6 +3,20 @@ class IpAddrUsagesController < ApplicationController
     @usages = IpAddrUsage.all
   end
 
+  def new
+    @usage = IpAddrUsage.new
+  end
+
+  def create
+    @usage = IpAddrUsage.new(user_params)
+    if @usage.save
+      flash[:success] = "Usage is created"
+      redirect_to root_path
+    else
+      render 'new'
+    end
+  end
+
   def edit
     @usage = IpAddrUsage.find(params[:id])
   end
@@ -17,9 +31,11 @@ class IpAddrUsagesController < ApplicationController
     end
   end
 
-  def user_params
-    params.require(:ip_addr_usage).permit(:ip_address, :user,
-                                          :machine_name,
-                                          :location, :note)
-  end
+  private
+    def user_params
+      params.require(:ip_addr_usage).permit(:ip_address, :user,
+                                            :machine_name,
+                                            :location, :note)
+    end
+  # end private
 end
