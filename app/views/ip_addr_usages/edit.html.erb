@@ -1,0 +1,29 @@
+<h1>IPアドレス利用状況の編集</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@usage) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :ip_address, "IPアドレス" %>
+      <%= f.text_field :ip_address %>
+
+      <%= f.label :user, "利用者" %>
+      <%= f.text_field :user %>
+
+      <%= f.label :machine_name, "マシン名" %>
+      <%= f.text_field :machine_name %>
+
+      <%= f.label :location, "位置" %>
+      <%= f.text_field :location %>
+
+      <%= f.label :note, "備考" %>
+      <%= f.text_area :note %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+~
+~
+
+

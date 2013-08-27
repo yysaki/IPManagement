@@ -1,5 +1,15 @@
 @import "bootstrap";
 
+/* mixin, variables, et. */
+
+$grayMidiumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+
 /* universal */
 
 html {
@@ -71,3 +81,18 @@ p {
   color: #fff;
   text-decoration: none;
 }
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
