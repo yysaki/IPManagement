@@ -18,8 +18,14 @@
 
       <%= f.label :note, "備考" %>
       <%= f.text_area :note %>
-
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <p>
+        <span class="left">
+          <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+        </span>
+        <span class='right'>
+          <%= button_to "Cancel", root_path, class: "btn btn-large btn-warning", method: "get" %>
+        </span>
+      </p>
     <% end %>
   </div>
 </div>

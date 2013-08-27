@@ -96,3 +96,13 @@ input {
   height: auto !important;
 }
 
+/* span layout */
+span {
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+}
+
