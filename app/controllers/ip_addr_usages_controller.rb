@@ -5,6 +5,7 @@ class IpAddrUsagesController < ApplicationController
 
   def new
     @usage = IpAddrUsage.new
+    @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
   end
 
   def create
@@ -19,6 +20,7 @@ class IpAddrUsagesController < ApplicationController
 
   def edit
     @usage = IpAddrUsage.find(params[:id])
+    @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
   end
 
   def update

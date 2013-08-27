@@ -8,4 +8,17 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  def unused_ip_addresses(ip_addresses)
+    ans = []
+    1.upto(255) do |n|
+      ans.push("192.168.15.#{n}")
+    end
+    
+    ip_addresses.each do |ip_address|
+      ans.delete(ip_address)
+    end
+
+    ans
+  end
 end

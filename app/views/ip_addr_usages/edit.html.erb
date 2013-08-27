@@ -5,7 +5,7 @@
       <%= render 'shared/error_messages' %>
 
       <%= f.label :ip_address, "IPアドレス" %>
-      <%= f.text_field :ip_address %>
+      <%= f.select :ip_address, unused_ip_addresses(@ip_addresses) %>
 
       <%= f.label :user, "利用者" %>
       <%= f.text_field :user %>
