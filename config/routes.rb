@@ -1,8 +1,5 @@
 IPManagement::Application.routes.draw do
   resources :ip_addr_usages do
-    member do
-      get 'delete_confirm'
-    end
   end
 
   root 'ip_addr_usages#index'

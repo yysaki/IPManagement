@@ -1,0 +1,26 @@
+<h1>割り当て解除の確認</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>IPアドレス</th>
+      <th>利用者</th>
+      <th>マシン名</th>
+      <th>位置</th>
+      <th>備考</th>
+      <th>ping失敗回数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @usage.ip_address %></td>
+      <td><%= @usage.user %></td>
+      <td><%= @usage.machine_name %></td>
+      <td><%= @usage.location %></td>
+      <td><%= @usage.note %></td>
+      <td><%= @usage.failed_ping_history %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to "delete", @usage, method: :delete,
+                                  data: { confirm: "You sure?" } %>

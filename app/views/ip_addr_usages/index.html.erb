@@ -19,7 +19,8 @@
         <td><%= usage.machine_name %></td>
         <td><%= usage.location %></td>
         <td><%= usage.note %></td>
-        <td><%= link_to "delete", delete_confirm_ip_addr_usage_path(usage) %></td>
+        <td><%= link_to "delete", usage, method: :delete,
+          data: { confirm: "割り当てを解除します。本当によろしいですか？" } %></td>
       </tr>
     <% end %>
   </tbody>

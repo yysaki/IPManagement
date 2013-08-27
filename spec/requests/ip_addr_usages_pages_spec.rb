@@ -3,10 +3,23 @@ require 'spec_helper'
 describe "IP address usage pages" do
   subject { page }
 
-  describe "index page" do
-    before { visit root_path }
+  describe "index" do
+
+    before do
+      FactoryGirl.create(:ip_addr_usage)
+      visit root_path
+    end
 
     it { should have_content('割り当て済みIPアドレス') }
+    it { should have_content('delete') }
+
+    describe "delete links" do
+      it "should be able to delete usage" do
+        expect do
+          click_link('delete', match: :first)
+        end.to change(IpAddrUsage, :count).by(-1)
+      end
+    end
   end
 
   describe "new page" do

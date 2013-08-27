@@ -24,13 +24,19 @@ class IpAddrUsagesController < ApplicationController
   def update
     @usage = IpAddrUsage.find(params[:id])
     if @usage.update_attributes(user_params)
-      flash[:success] = "Usage updated"
+      flash[:success] = "Usage updated."
       redirect_to root_path
     else
       render 'edit'
     end
   end
 
+  def destroy
+    @usage = IpAddrUsage.find(params[:id]).destroy
+    flash[:success] = "Usage destroyed."
+    redirect_to root_path
+  end
+ 
   private
     def user_params
       params.require(:ip_addr_usage).permit(:ip_address, :user,
