@@ -1,5 +1,10 @@
 IPManagement::Application.routes.draw do
-  resources :ip_addr_usages
+  resources :ip_addr_usages do
+    member do
+      get 'delete_confirm'
+    end
+  end
+
   root 'ip_addr_usages#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

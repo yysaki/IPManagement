@@ -14,12 +14,12 @@
   <tbody>
     <% @usages.each do |usage| %>
       <tr>
-        <td><%= link_to usage.ip_address, '#' %></td>
+        <td><%= link_to usage.ip_address, edit_ip_addr_usage_path(usage) %></td>
         <td><%= usage.user %></td>
         <td><%= usage.machine_name %></td>
         <td><%= usage.location %></td>
         <td><%= usage.note %></td>
-        <td><%= link_to "delete", '#' %></td>
+        <td><%= link_to "delete", delete_confirm_ip_addr_usage_path(usage) %></td>
       </tr>
     <% end %>
   </tbody>
