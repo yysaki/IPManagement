@@ -9,10 +9,21 @@ module ApplicationHelper
     end
   end
 
+  def available_ip_addesses(addresses, now_address = nil)
+    if now_address
+      unused_ip_addresses(addresses).insert(0, now_address)
+    else
+      unused_ip_addresses(addresses)
+    end
+  end
+
+  CANDIDATES = ["192.168.15"]
   def unused_ip_addresses(ip_addresses)
     ans = []
-    1.upto(255) do |n|
-      ans.push("192.168.15.#{n}")
+    CANDIDATES.each do |candidate|
+      1.upto(254) do |n|
+        ans.push("#{candidate}.#{n}")
+      end
     end
     
     ip_addresses.each do |ip_address|
