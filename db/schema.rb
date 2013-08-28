@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828072924) do
+ActiveRecord::Schema.define(version: 20130828080944) do
 
   create_table "available_ip_addresses", force: true do |t|
     t.string   "ip_address"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20130828072924) do
   add_index "available_ip_addresses", ["ip_address"], name: "index_available_ip_addresses_on_ip_address", unique: true
 
   create_table "ip_addr_usages", force: true do |t|
-    t.string   "ip_address"
     t.string   "user"
     t.string   "machine_name"
     t.string   "location"
@@ -34,6 +33,5 @@ ActiveRecord::Schema.define(version: 20130828072924) do
   end
 
   add_index "ip_addr_usages", ["available_ip_address_id"], name: "index_ip_addr_usages_on_available_ip_address_id", unique: true
-  add_index "ip_addr_usages", ["ip_address"], name: "index_ip_addr_usages_on_ip_address", unique: true
 
 end
