@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :ip_addr_usage do
-    sequence(:ip_address) { |n| "192.168.15.#{n}" }
+    sequence(:available_ip_address_id) { |n| n+1 }
     user "y_sasaki"
-    sequence(:machine_name) {|n| "vagrant#{n}" }
-    sequence(:location) {|n| "VM#{n}" }
+    sequence(:machine_name) {|n| "vagrant#{n+1}" }
+    sequence(:location) {|n| "VM#{n+1}" }
     note "test"
     failed_ping_history 0
     available_ip_address
