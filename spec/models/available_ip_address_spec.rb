@@ -5,4 +5,5 @@ describe AvailableIpAddress do
   subject { @address }
 
   it { should respond_to(:ip_address) }
+  it { should respond_to(:ip_addr_usage) }
 end
