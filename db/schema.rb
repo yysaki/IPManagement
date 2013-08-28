@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826052252) do
+ActiveRecord::Schema.define(version: 20130828050654) do
+
+  create_table "available_ip_addresses", force: true do |t|
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ip_addr_usages", force: true do |t|
     t.string   "ip_address"
