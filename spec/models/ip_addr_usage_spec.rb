@@ -17,12 +17,21 @@ describe IpAddrUsage do
       @usage = address.build_ip_addr_usage(
         ip_address: "192.168.15.1", user: "y_sasaki",
         machine_name: "vagrant1", location: "VM1",
-        note: "test", failed_ping_history: 0)
+        note: "test", failed_ping_history: 0,
+        available_ip_address_id: 1)
     end 
 
     it { should respond_to(:available_ip_address) }
     it { should respond_to(:available_ip_address_id) }
     specify { expect(address).to respond_to(:ip_address) }
+
+    describe "uniqueness" do
+      before do
+        usage_with_same_email = @usage.dup
+        usage_with_same_email.save
+      end
+      it { should_not be_valid }
+    end
   end
 
   describe "when ip_address is not present" do
@@ -30,7 +39,7 @@ describe IpAddrUsage do
     it { should_not be_valid }
   end
 
-  describe "when ip_address is invalid format" do
+    describe "when ip_address is invalid format" do
     it "should be invalid" do
       ip_addresses = %w[192.168.0,1 192.168.0.258]
       ip_addresses.each do |invalid_ip_address|

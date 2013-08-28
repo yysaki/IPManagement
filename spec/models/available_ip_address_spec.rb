@@ -22,6 +22,11 @@ describe AvailableIpAddress do
     end
   end
 
+  it "uniqueness" do
+    address_with_same_email = @address.dup
+    expect(address_with_same_email).not_to be_valid
+  end
+
   describe "when ip_address is not present" do
     before { @address.ip_address = "" }
     it { should_not be_valid }
