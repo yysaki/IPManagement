@@ -4,8 +4,7 @@
     <%= form_for(@usage) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :ip_address, "IPアドレス" %>
-      <%= f.select :ip_address, available_ip_addesses(@ip_addresses, @usage.ip_address) %>
+      <%= f.label :ip_address_str, "IPアドレス : #{@usage.ip_address}" %>
 
       <%= f.label :user, "利用者" %>
       <%= f.text_field :user %>

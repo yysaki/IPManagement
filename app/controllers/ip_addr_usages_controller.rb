@@ -10,6 +10,8 @@ class IpAddrUsagesController < ApplicationController
 
   def create
     @usage = IpAddrUsage.new(user_params)
+    @usage.available_ip_address_id = AvailableIpAddress.find_by_ip_address(@usage.ip_address_str).id
+    @usage.available_ip_address = AvailableIpAddress.find_by_ip_address(@usage.ip_address_str)
     if @usage.save
       flash[:success] = "Usage is created"
       redirect_to root_path
@@ -43,7 +45,7 @@ class IpAddrUsagesController < ApplicationController
  
   private
     def user_params
-      params.require(:ip_addr_usage).permit(:ip_address, :user,
+      params.require(:ip_addr_usage).permit(:ip_address_str, :user,
                                             :machine_name,
                                             :location, :note)
     end
