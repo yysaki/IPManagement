@@ -46,7 +46,7 @@ describe "IP address usage pages" do
     describe "with valid information" do
       let(:new_ip_address) { "192.168.15.10" }
       before do
-        fill_in "IPアドレス", with: new_ip_address
+        select new_ip_address, from: "IPアドレス"
         fill_in "利用者", with: "osol"
         fill_in "位置", with: "実機"
         fill_in "備考", with: "vm1.websys.timedia.co.jp # in websys server room"
@@ -86,7 +86,8 @@ describe "IP address usage pages" do
 
     describe "with invalid information" do
       before do
-        fill_in "IPアドレス", with: "192,168,15,10"
+        select "192.168.15.10", from: "IPアドレス"
+        fill_in "利用者", with: ""
         click_button submit
       end
 

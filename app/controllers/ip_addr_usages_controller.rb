@@ -14,6 +14,7 @@ class IpAddrUsagesController < ApplicationController
       flash[:success] = "Usage is created"
       redirect_to root_path
     else
+      @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
       render 'new'
     end
   end
@@ -29,6 +30,7 @@ class IpAddrUsagesController < ApplicationController
       flash[:success] = "Usage updated."
       redirect_to root_path
     else
+      @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
       render 'edit'
     end
   end

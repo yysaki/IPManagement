@@ -9,11 +9,11 @@ module ApplicationHelper
     end
   end
 
-  def available_ip_addesses(addresses, now_address = nil)
-    if now_address
-      unused_ip_addresses(addresses).insert(0, now_address)
+  def available_ip_addesses(ip_addresses, now_ip_address = nil)
+    if now_ip_address
+      unused_ip_addresses(ip_addresses).insert(0, now_ip_address)
     else
-      unused_ip_addresses(addresses)
+      unused_ip_addresses(ip_addresses)
     end
   end
 
