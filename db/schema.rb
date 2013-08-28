@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828054530) do
+ActiveRecord::Schema.define(version: 20130828065018) do
 
   create_table "available_ip_addresses", force: true do |t|
     t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "available_ip_addresses", ["ip_address"], name: "index_available_ip_addresses_on_ip_address", unique: true
 
   create_table "ip_addr_usages", force: true do |t|
     t.string   "ip_address"
