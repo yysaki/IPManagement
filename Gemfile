@@ -8,6 +8,10 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
+# Use for health check process
+gem 'net-ping', '1.7.0'
+gem 'mail', '2.5.4'
+
 group :development, :test do
   gem 'sqlite3', '1.3.7'
   gem 'rspec-rails', '2.13.1'
@@ -24,7 +28,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
+  gem 'sqlite3', '1.3.7'
   gem 'rails_12factor', '0.0.2'
 end
 
