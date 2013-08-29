@@ -9,6 +9,7 @@ namespace :db do
       else 
         usage.failed_ping_history = usage.failed_ping_history + 1
       end
+      usage.save
     end
   end
 end

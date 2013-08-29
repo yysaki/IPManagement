@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828080944) do
+ActiveRecord::Schema.define(version: 20130829071814) do
 
   create_table "available_ip_addresses", force: true do |t|
     t.string   "ip_address"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20130828080944) do
     t.string   "machine_name"
     t.string   "location"
     t.string   "note"
-    t.integer  "failed_ping_history"
+    t.integer  "failed_ping_history",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "available_ip_address_id"
