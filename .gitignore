@@ -18,6 +18,7 @@
 *.swp
 *~
 .project
+.vimprojects
 .DS_Store
 .idea
 .secret
