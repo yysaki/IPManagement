@@ -12,4 +12,8 @@ namespace :db do
       usage.save
     end
   end
+
+  task send_mail: :environment do
+    #TODO
+  end
 end
