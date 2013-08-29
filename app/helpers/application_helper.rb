@@ -23,14 +23,8 @@ module ApplicationHelper
     end
   end
 
-  CANDIDATES = ["192.168.15"]
   def unused_ip_addresses(ip_addresses)
-    ans = []
-    CANDIDATES.each do |candidate|
-      1.upto(254) do |n|
-        ans.push("#{candidate}.#{n}")
-      end
-    end
+    ans = sort_by_ip_address(AvailableIpAddress.all).map { |add| add.ip_address }
     
     ip_addresses.each do |ip_address|
       ans.delete(ip_address)
