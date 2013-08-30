@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @usages.sort.each do |usage| %>
-      <tr>
+      <tr class="<%= usage.status %>">
         <td><%= link_to usage.ip_address, edit_ip_addr_usage_path(usage) %></td>
         <td><%= usage.user %></td>
         <td><%= usage.machine_name %></td>
