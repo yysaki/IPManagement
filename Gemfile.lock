@@ -217,7 +217,6 @@ DEPENDENCIES
   guard-spork (= 1.5.0)
   jbuilder (~> 1.2)
   jquery-rails
-  mail (= 2.5.4)
   net-ping (= 1.7.0)
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)

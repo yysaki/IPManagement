@@ -10,7 +10,6 @@ gem 'bootstrap-will_paginate', '0.0.9'
 
 # Use for health check process
 gem 'net-ping', '1.7.0'
-gem 'mail', '2.5.4'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
