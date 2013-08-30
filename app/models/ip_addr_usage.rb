@@ -9,4 +9,9 @@ class IpAddrUsage < ActiveRecord::Base
   def ip_address
     self.available_ip_address.ip_address 
   end
+
+  def <=>(rhs)
+    available_ip_address <=> rhs.available_ip_address
+  end
+
 end

@@ -5,4 +5,10 @@ class AvailableIpAddress < ActiveRecord::Base
                          uniqueness: true
 
  attr_accessor :ip_address_str, :ip_address_lb, :ip_address_ub 
+
+  def <=>(rhs)
+    lhs_operand = ip_address.split('.').map { |i| "%3d" % i.to_i }
+    rhs_operand = rhs.ip_address.split('.').map { |i| "%3d" % i.to_i }
+    lhs_operand <=> rhs_operand
+  end
 end

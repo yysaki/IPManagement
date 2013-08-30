@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% sort_by_ip_address(@usages).each do |usage| %>
+    <% @usages.sort.each do |usage| %>
       <tr>
         <td><%= link_to usage.ip_address, edit_ip_addr_usage_path(usage) %></td>
         <td><%= usage.user %></td>

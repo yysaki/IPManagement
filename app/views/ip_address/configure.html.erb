@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <% sort_by_ip_address(@addresses).each do |address| %>
+    <% @addresses.sort.each do |address| %>
       <tr>
         <td><%= address.ip_address %></td>
         <td><%= address.ip_addr_usage.user unless address.ip_addr_usage.nil? %></td>
