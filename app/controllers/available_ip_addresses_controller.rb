@@ -7,8 +7,8 @@ class AvailableIpAddressesController < ApplicationController
   def create
     @addresses = AvailableIpAddress.all
     @new_address = AvailableIpAddress.new(user_params)
-    if is_multiple(@new_address)
-      flash[:failure] = "multiple descriptions"
+    if are_single_and_range_forms_filled(@new_address)
+      flash[:failure] = "unavailable at the same time range registration and registration alone"
 
     elsif not @new_address.ip_address_str.blank?
       @new_address.ip_address = @new_address.ip_address_str
@@ -18,10 +18,10 @@ class AvailableIpAddressesController < ApplicationController
         return
       end
 
-    elsif not @new_address.ip_address_lb.blank? and not @new_address.ip_address_ub.blank?
-      if is_valid_range(@new_address.ip_address_lb, @new_address.ip_address_ub)
-        to_array(@new_address.ip_address_lb, @new_address.ip_address_ub).each do |add|
-          AvailableIpAddress.create!(ip_address: add) 
+    elsif not @new_address.ip_address_start.blank? and not @new_address.ip_address_end.blank?
+      if is_valid_range(@new_address.ip_address_start, @new_address.ip_address_end)
+        iprange_to_array(@new_address.ip_address_start, @new_address.ip_address_end).each do |addr|
+          AvailableIpAddress.create!(ip_address: addr) 
         end
         flash[:success] = "IPaddresses are created"
         redirect_to config_path
@@ -47,12 +47,12 @@ class AvailableIpAddressesController < ApplicationController
   private
     def user_params
       params.require(:available_ip_address).permit(:ip_address, :ip_address_str, 
-                                                   :ip_address_lb, :ip_address_ub)
+                                                   :ip_address_start, :ip_address_end)
     end
 
-    def is_multiple(address)
+    def are_single_and_range_forms_filled(address)
       not address.ip_address_str.blank? and 
-        (not address.ip_address_lb.blank? or not address.ip_address_ub.blank?)
+        (not address.ip_address_start.blank? or not address.ip_address_end.blank?)
     end
 
     # IPv4を想定
@@ -69,7 +69,7 @@ class AvailableIpAddressesController < ApplicationController
       return false
     end
     
-    def to_array(lb, ub)
+    def iprange_to_array(lb, ub)
       lb_arr = lb.split('.').map { |i| i.to_i } 
       ub_arr = ub.split('.').map { |i| i.to_i }
       ret_arr = []

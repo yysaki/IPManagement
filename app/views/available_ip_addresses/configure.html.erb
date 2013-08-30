@@ -9,11 +9,11 @@
       <%= f.label :ip_address_str, "1つだけ追加" %>
       <%= f.text_field :ip_address_str, class: "span3" %>
 
-      <%= f.label :ip_address_lb, "範囲を指定して追加" %>
-      <%= f.label :ip_address_ub, "例: 192.168.15.10 ~ 192.168.15.20" %>
-      <%= f.text_field :ip_address_lb, class: "span3" %>
+      <%= f.label :ip_address_start, "範囲を指定して追加" %>
+      <%= f.label :ip_address_start, "例: 192.168.15.10 ~ 192.168.15.20" %>
+      <%= f.text_field :ip_address_start, class: "span3" %>
       ~
-      <%= f.text_field :ip_address_ub, class: "span3" %>
+      <%= f.text_field :ip_address_end, class: "span3" %>
 
       <%= f.submit "Create new IP address", class: "btn btn-large btn-primary" %>
     <% end %>
