@@ -1,4 +1,6 @@
 # require 'net/ping'
+
+# cmd: "$ bundle exec rake to=[mailaddress] db:health_check"
 namespace :db do
   task health_check: :environment do
     usages = IpAddrUsage.all
@@ -11,9 +13,9 @@ namespace :db do
       end
       usage.save
     end
-  end
 
-  task send_mail: :environment do
-    UnreachableAddrNotifier.send_notification(ENV['to']).deliver
+    if not IpAddrUsage.all_of_unreachable.empty?
+      UnreachableAddrNotifier.send_notification(ENV['to']).deliver
+    end
   end
 end
