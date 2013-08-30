@@ -3,7 +3,7 @@ IPManagement::Application.routes.draw do
   resources :available_ip_addresses, only: [:create, :destroy]
 
   root 'ip_addr_usages#index'
-  match '/config', to: 'ip_address#configure', via: 'get'
+  match '/config', to: 'available_ip_addresses#configure', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

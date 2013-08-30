@@ -1,4 +1,9 @@
 class AvailableIpAddressesController < ApplicationController
+  def configure
+    @addresses = AvailableIpAddress.all
+    @new_address = AvailableIpAddress.new
+  end
+
   def create
     @addresses = AvailableIpAddress.all
     @new_address = AvailableIpAddress.new(user_params)
@@ -29,7 +34,7 @@ class AvailableIpAddressesController < ApplicationController
       flash[:failure] = "text fields are blank"
     end
 
-    render 'ip_address/configure'
+    render 'configure'
   end
 
   def destroy
