@@ -1,0 +1,8 @@
+IP管理アプリに登録されている以下のIPアドレスは、一定期間の間応答がありませんでした。
+管理者の方は登録情報の更新をよろしくお願いします。
+
+==============================
+
+<% @unreachable_usages.each do |usage| %>
+  <%= "IPアドレス: #{usage.ip_address}, 利用者: #{usage.user}, 位置: #{usage.location}, 応答がない日数: #{usage.failed_ping_history}" %>
+<% end %>

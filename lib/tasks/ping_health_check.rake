@@ -14,6 +14,6 @@ namespace :db do
   end
 
   task send_mail: :environment do
-    #TODO
+    UnreachableAddrNotifier.send_notification(ENV['to']).deliver
   end
 end
