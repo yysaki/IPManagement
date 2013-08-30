@@ -36,7 +36,7 @@ class AvailableIpAddressesController < ApplicationController
     @addresses = AvailableIpAddress.all
     @new_address = AvailableIpAddress.find(params[:id]).destroy
     flash[:success] = "Usage destroyed."
-    render 'ip_address/configure'
+    redirect_to config_path
   end
  
   private
