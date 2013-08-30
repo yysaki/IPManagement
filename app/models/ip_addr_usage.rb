@@ -28,6 +28,7 @@ class IpAddrUsage < ActiveRecord::Base
 
   # ping到達不能を示す閾値
   THRESHOLD = 7
+  scope :unreachable, where("failed_ping_history >= ?", THRESHOLD)
   def IpAddrUsage.all_of_unreachable
     IpAddrUsage.all.select {|usage| usage.failed_ping_history >= THRESHOLD }
   end
