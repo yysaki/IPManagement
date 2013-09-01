@@ -12,8 +12,7 @@ class AvailableIpAddress < ActiveRecord::Base
     lhs_operand <=> rhs_operand
   end
 
-  def AvailableIpAddress.unused_ip_addresses
-    unused = all.select{ |addr| addr.ip_addr_usage.nil? }
-    unused.map { |addr| addr.ip_address }
+  def AvailableIpAddress.unused
+    all.select{ |addr| addr.ip_addr_usage.nil? }
   end
 end
