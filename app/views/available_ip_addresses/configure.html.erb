@@ -3,17 +3,17 @@
 <h2>IPアドレスの追加</h2>
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@new_address) do |f| %>
+    <%= form_for @configure_form, url: available_ip_addresses_path, action: "create" do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :ip_address_str, "1つだけ追加" %>
-      <%= f.text_field :ip_address_str, class: "span3" %>
+      <%= f.label :ip_addr_single, "1つだけ追加" %>
+      <%= f.text_field :ip_addr_single, class: "span3" %>
 
-      <%= f.label :ip_address_start, "範囲を指定して追加" %>
-      <%= f.label :ip_address_start, "例: 192.168.15.10 ~ 192.168.15.20" %>
-      <%= f.text_field :ip_address_start, class: "span3" %>
+      <%= f.label :ip_addr_start, "範囲を指定して追加" %>
+      <%= f.label :ip_addr_start, "例: 192.168.15.10 ~ 192.168.15.20" %>
+      <%= f.text_field :ip_addr_start, class: "span3" %>
       ~
-      <%= f.text_field :ip_address_end, class: "span3" %>
+      <%= f.text_field :ip_addr_end, class: "span3" %>
 
       <%= f.submit "Create new IP address", class: "btn btn-large btn-primary" %>
     <% end %>

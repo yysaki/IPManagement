@@ -4,8 +4,6 @@ class AvailableIpAddress < ActiveRecord::Base
   validates :ip_address, ip_addr: true, presence: true,
                          uniqueness: true
 
- attr_accessor :ip_address_str, :ip_address_start, :ip_address_end
-
   def <=>(rhs)
     lhs_operand = ip_address.split('.').map { |i| "%3d" % i.to_i }
     rhs_operand = rhs.ip_address.split('.').map { |i| "%3d" % i.to_i }

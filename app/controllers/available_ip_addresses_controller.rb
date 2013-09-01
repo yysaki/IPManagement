@@ -1,25 +1,26 @@
 class AvailableIpAddressesController < ApplicationController
   def configure
-    @new_address = AvailableIpAddress.new
+    @configure_form = ConfigureForm.new
     @addresses = AvailableIpAddress.all
   end
 
   def create
-    @new_address = AvailableIpAddress.new(user_params)
-    if are_single_and_range_forms_filled(@new_address)
+    @configure_form = ConfigureForm.new(params[:configure_form])
+    @configure_form.valid?
+    @new_address = AvailableIpAddress.new
+    if are_single_and_range_forms_filled(@configure_form)
       flash[:failure] = "unavailable at the same time range registration and registration alone"
 
-    elsif not @new_address.ip_address_str.blank?
-      @new_address.ip_address = @new_address.ip_address_str
-      if @new_address.save
+    elsif not @configure_form.ip_addr_single.blank?
+      if AvailableIpAddress.new(ip_address: @configure_form.ip_addr_single).save
         flash[:success] = "IPaddress is created"
         redirect_to config_path
         return
       end
 
-    elsif not @new_address.ip_address_start.blank? and not @new_address.ip_address_end.blank?
-      if is_valid_range(@new_address.ip_address_start, @new_address.ip_address_end)
-        each_ip_addr(@new_address.ip_address_start, @new_address.ip_address_end) do |addr|
+    elsif not @configure_form.ip_addr_start.blank? and not @configure_form.ip_addr_end.blank?
+      if is_valid_range(@configure_form.ip_addr_start, @configure_form.ip_addr_end)
+        each_ip_addr(@configure_form.ip_addr_start, @configure_form.ip_addr_end) do |addr|
           AvailableIpAddress.create!(ip_address: addr) 
         end
         flash[:success] = "IPaddresses are created"
@@ -45,13 +46,13 @@ class AvailableIpAddressesController < ApplicationController
  
   private
     def user_params
-      params.require(:available_ip_address).permit(:ip_address, :ip_address_str, 
-                                                   :ip_address_start, :ip_address_end)
+      params.require(:available_ip_address).permit(:ip_address, :ip_addr_single, 
+                                                   :ip_addr_start, :ip_addr_end)
     end
 
-    def are_single_and_range_forms_filled(address)
-      not address.ip_address_str.blank? and 
-        (not address.ip_address_start.blank? or not address.ip_address_end.blank?)
+    def are_single_and_range_forms_filled(configure_form)
+      not configure_form.ip_addr_single.blank? and 
+        (not configure_form.ip_addr_start.blank? or not configure_form.ip_addr_end.blank?)
     end
 
     # IPv4を想定
