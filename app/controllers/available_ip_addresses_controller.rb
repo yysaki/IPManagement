@@ -1,11 +1,10 @@
 class AvailableIpAddressesController < ApplicationController
   def configure
-    @addresses = AvailableIpAddress.all
     @new_address = AvailableIpAddress.new
+    @addresses = AvailableIpAddress.all
   end
 
   def create
-    @addresses = AvailableIpAddress.all
     @new_address = AvailableIpAddress.new(user_params)
     if are_single_and_range_forms_filled(@new_address)
       flash[:failure] = "unavailable at the same time range registration and registration alone"
@@ -20,7 +19,7 @@ class AvailableIpAddressesController < ApplicationController
 
     elsif not @new_address.ip_address_start.blank? and not @new_address.ip_address_end.blank?
       if is_valid_range(@new_address.ip_address_start, @new_address.ip_address_end)
-        iprange_to_array(@new_address.ip_address_start, @new_address.ip_address_end).each do |addr|
+        each_ip_addr(@new_address.ip_address_start, @new_address.ip_address_end) do |addr|
           AvailableIpAddress.create!(ip_address: addr) 
         end
         flash[:success] = "IPaddresses are created"
@@ -34,12 +33,12 @@ class AvailableIpAddressesController < ApplicationController
       flash[:failure] = "text fields are blank"
     end
 
+    @addresses = AvailableIpAddress.all
     render 'configure'
   end
 
   def destroy
-    @addresses = AvailableIpAddress.all
-    @new_address = AvailableIpAddress.find(params[:id]).destroy
+    AvailableIpAddress.find(params[:id]).destroy
     flash[:success] = "Usage destroyed."
     redirect_to config_path
   end
@@ -56,12 +55,12 @@ class AvailableIpAddressesController < ApplicationController
     end
 
     # IPv4を想定
-    def is_valid_range(lb, ub)
-      if(AvailableIpAddress.new(ip_address: lb).valid? and AvailableIpAddress.new(ip_address: ub).valid?)
-        lb_arr = lb.split('.').map { |i| i.to_i } 
-        ub_arr = ub.split('.').map { |i| i.to_i }
-        if(lb_arr[0] == ub_arr[0] && lb_arr[1] == ub_arr[1] && lb_arr[2] == ub_arr[2] && 
-           lb_arr[3] < ub_arr[3])
+    def is_valid_range(addr_start, addr_end)
+      if(AvailableIpAddress.new(ip_address: addr_start).valid? and AvailableIpAddress.new(ip_address: addr_end).valid?)
+        start_arr = addr_start.split('.').map { |i| i.to_i } 
+        end_arr = addr_end.split('.').map { |i| i.to_i }
+        if(start_arr[0] == end_arr[0] && start_arr[1] == end_arr[1] && start_arr[2] == end_arr[2] && 
+           start_arr[3] < end_arr[3])
           return true
         end
       end
@@ -69,15 +68,12 @@ class AvailableIpAddressesController < ApplicationController
       return false
     end
     
-    def iprange_to_array(lb, ub)
-      lb_arr = lb.split('.').map { |i| i.to_i } 
-      ub_arr = ub.split('.').map { |i| i.to_i }
-      ret_arr = []
-      lb_arr[3].upto(ub_arr[3]) do |n|
-        ret_arr.push("#{lb_arr[0]}.#{lb_arr[1]}.#{lb_arr[2]}.#{n}")
+    def each_ip_addr(addr_start, addr_end, &block)
+      start_arr = addr_start.split('.').map { |i| i.to_i } 
+      end_arr = addr_end.split('.').map { |i| i.to_i }
+      start_arr[3].upto(end_arr[3]) do |n|
+        yield ("#{start_arr[0]}.#{start_arr[1]}.#{start_arr[2]}.#{n}")
       end
-
-      return ret_arr
     end
 
   # end private

@@ -5,6 +5,7 @@ class IpAddrUsagesController < ApplicationController
 
   def new
     @usage = IpAddrUsage.new
+    @unused_addr_map = AvailableIpAddress.unused.map { |addr| [addr.ip_address, addr.id] }
   end
 
   def create
@@ -14,6 +15,7 @@ class IpAddrUsagesController < ApplicationController
       flash[:success] = "Usage is created"
       redirect_to root_path
     else
+      @unused_addr_map = AvailableIpAddress.unused.map { |addr| [addr.ip_address, addr.id] }
       render 'new'
     end
   end

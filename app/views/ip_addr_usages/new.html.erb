@@ -5,7 +5,7 @@
       <%= render 'shared/error_messages' %>
 
       <%= f.label :available_ip_address_id , "IPアドレス" %>
-      <%= f.select :available_ip_address_id, AvailableIpAddress.unused.map { |addr| [addr.ip_address, addr.id] } %>
+      <%= f.select :available_ip_address_id, @unused_addr_map  %>
 
       <%= f.label :user, "利用者" %>
       <%= f.text_field :user %>
