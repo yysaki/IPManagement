@@ -13,9 +13,9 @@ class IpAddrUsage < ActiveRecord::Base
     available_ip_address <=> rhs.available_ip_address
   end
 
-  # failed_ping_historyの状態を表すbootstrapのCSSクラスを戻す
+  # ping_failure_countの状態を表すbootstrapのCSSクラスを戻す
   def status
-    case failed_ping_history
+    case ping_failure_count
     when 0
       ""
     when 1...THRESHOLD
@@ -27,5 +27,5 @@ class IpAddrUsage < ActiveRecord::Base
 
   # ping到達不能を示す閾値
   THRESHOLD = 7
-  scope :unreachable, where("failed_ping_history >= ?", THRESHOLD)
+  scope :unreachable, where("ping_failure_count >= ?", THRESHOLD)
 end

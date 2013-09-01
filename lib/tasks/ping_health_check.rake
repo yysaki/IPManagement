@@ -6,9 +6,9 @@ task health_check: :environment do
   usages.each do |usage|
     pinger = Net::Ping::External.new(usage.ip_address)
     if pinger.ping?
-      usage.failed_ping_history = 0
+      usage.ping_failure_count = 0
     else 
-      usage.failed_ping_history = usage.failed_ping_history + 1
+      usage.ping_failure_count = usage.ping_failure_count + 1
     end
     usage.save
   end

@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:machine_name) {|n| "vagrant#{n+1}" }
     sequence(:location) {|n| "VM#{n+1}" }
     note "test"
-    failed_ping_history 0
+    ping_failure_count 0
     available_ip_address
   end
 

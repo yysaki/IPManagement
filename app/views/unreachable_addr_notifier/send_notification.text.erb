@@ -4,5 +4,5 @@ IP管理アプリに登録されている以下のIPアドレスは、一定期�
 ==============================
 
 <% @unreachable_usages.each do |usage| %>
-  <%= "IPアドレス: #{usage.ip_address}, 利用者: #{usage.user}, 位置: #{usage.location}, 応答がない日数: #{usage.failed_ping_history}" %>
+  <%= "IPアドレス: #{usage.ip_address}, 利用者: #{usage.user}, 位置: #{usage.location}, 応答がない日数: #{usage.ping_failure_count}" %>
 <% end %>

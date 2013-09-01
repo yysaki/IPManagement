@@ -9,7 +9,7 @@ describe IpAddrUsage do
   it { should respond_to(:machine_name) }
   it { should respond_to(:location) }
   it { should respond_to(:note) }
-  it { should respond_to(:failed_ping_history) }
+  it { should respond_to(:ping_failure_count) }
 
   describe "association check" do
     let(:address) { FactoryGirl.create(:available_ip_address) }
@@ -17,7 +17,7 @@ describe IpAddrUsage do
       @usage = address.build_ip_addr_usage(
         available_ip_address_id: 1, user: "y_sasaki",
         machine_name: "vagrant1", location: "VM1",
-        note: "test", failed_ping_history: 0,
+        note: "test", ping_failure_count: 0,
         available_ip_address_id: 1)
     end 
 

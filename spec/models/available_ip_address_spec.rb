@@ -6,7 +6,7 @@ describe AvailableIpAddress do
     address.build_ip_addr_usage(
       ip_address: "192.168.15.1", user: "y_sasaki",
       machine_name: "vagrant1", location: "VM1",
-      note: "test", failed_ping_history: 0)
+      note: "test", ping_failure_count: 0)
   end 
 
   subject { @address }
