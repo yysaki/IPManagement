@@ -9,11 +9,4 @@ module ApplicationHelper
     end
   end
 
-  def unused_ip_addresses(ip_addresses)
-    ans = AvailableIpAddress.all.sort.map { |add| add.ip_address }
-    ip_addresses.each do |ip_address|
-      ans.delete(ip_address)
-    end
-    ans
-  end
 end

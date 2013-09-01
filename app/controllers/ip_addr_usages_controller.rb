@@ -5,7 +5,6 @@ class IpAddrUsagesController < ApplicationController
 
   def new
     @usage = IpAddrUsage.new
-    @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
   end
 
   def create
@@ -16,14 +15,12 @@ class IpAddrUsagesController < ApplicationController
       flash[:success] = "Usage is created"
       redirect_to root_path
     else
-      @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
       render 'new'
     end
   end
 
   def edit
     @usage = IpAddrUsage.find(params[:id])
-    @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
   end
 
   def update
@@ -32,7 +29,6 @@ class IpAddrUsagesController < ApplicationController
       flash[:success] = "Usage updated."
       redirect_to root_path
     else
-      @ip_addresses = IpAddrUsage.all.map { |u| u.ip_address }
       render 'edit'
     end
   end
