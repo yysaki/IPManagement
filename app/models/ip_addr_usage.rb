@@ -19,7 +19,7 @@ class IpAddrUsage < ActiveRecord::Base
     case failed_ping_history
     when 0
       ""
-    when 1..(THRESHOLD-1)
+    when 1...THRESHOLD
       "text-warning"
     else
       "text-error"

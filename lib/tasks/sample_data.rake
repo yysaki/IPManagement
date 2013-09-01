@@ -7,7 +7,7 @@ namespace :db do
 
     IpAddrUsage.create!(
       user: "osol", location: "実機", 
-      note: "vm1.websys.timedia.co.jp # in websys server room",
+      note: "vm1.websys.example.co.jp # in websys server room",
       available_ip_address_id: 1)
 
     70.times do |n|
